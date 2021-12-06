@@ -16,21 +16,19 @@
   <meta name="description" content="志远Zy的博客，记录日常，技术分享">
   <meta name="author" content="志远Zy">
   <meta name="keywords" content="">
-  <meta name="description" content="All technologies will eventually find answers in life 👋 🔭 I’m a graduate student 🌱 I’m currently learning java 👯 Hope to meet more interesting people 🤔 My email：&amp;#x31;&amp;#50;&amp;#x36;&amp;#x33;&amp;#49;&amp;#x31;">
-<meta property="og:type" content="website">
-<meta property="og:title" content="关于">
-<meta property="og:url" content="http://example.com/about/index.html">
+  <meta name="description" content="Java多态1.多态性：父类或接口定义的引用变量可以指向子类或具体实现类的实例对象。提高了程序的拓展性。 在Java中有两种形式可以实现多态：继承（多个子类对同一方法的重写）和接口（实现接口并覆盖接口中同一方法）。 方法重载（overload）实现的是编译时的多态性（也称为前绑定），而方法重写（override）实现的是运行时的多态性（也称为后绑定）。 一个引用变量到底会指向哪个类的实例对象，该引">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Java多态">
+<meta property="og:url" content="http://example.com/2021/12/06/javase/Java%E5%A4%9A%E6%80%81/index.html">
 <meta property="og:site_name" content="志远Zy的小窝">
-<meta property="og:description" content="All technologies will eventually find answers in life 👋 🔭 I’m a graduate student 🌱 I’m currently learning java 👯 Hope to meet more interesting people 🤔 My email：&amp;#x31;&amp;#50;&amp;#x36;&amp;#x33;&amp;#49;&amp;#x31;">
+<meta property="og:description" content="Java多态1.多态性：父类或接口定义的引用变量可以指向子类或具体实现类的实例对象。提高了程序的拓展性。 在Java中有两种形式可以实现多态：继承（多个子类对同一方法的重写）和接口（实现接口并覆盖接口中同一方法）。 方法重载（overload）实现的是编译时的多态性（也称为前绑定），而方法重写（override）实现的是运行时的多态性（也称为后绑定）。 一个引用变量到底会指向哪个类的实例对象，该引">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://github-readme-stats.vercel.app/api?username=mzy150430115&?theme=dracula">
-<meta property="article:published_time" content="2021-12-01T11:20:33.000Z">
-<meta property="article:modified_time" content="2021-12-01T12:17:09.975Z">
+<meta property="article:published_time" content="2021-12-06T07:03:12.000Z">
+<meta property="article:modified_time" content="2021-12-06T07:14:33.769Z">
 <meta property="article:author" content="志远Zy">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://github-readme-stats.vercel.app/api?username=mzy150430115&?theme=dracula">
   
-  <title>关于 - 志远Zy的小窝</title>
+  <title>Java多态 - 志远Zy的小窝</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -75,7 +73,7 @@
 
 
 <body>
-  <header style="height: 60vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
@@ -176,9 +174,43 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="关于">
+            <span class="h2" id="subtitle" title="Java多态">
               
             </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-12-06 15:03" pubdate>
+        2021年12月6日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      1k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      3 分钟
+    </span>
+  
+
+  
+  
+</div>
 
             
           </div>
@@ -191,90 +223,100 @@
 
   <main>
     
-      <div class="container nopadding-x-md">
-        <div class="py-5" id="board"
-          >
-          
-            <div class="about-avatar">
-              <img src="/img/avatar.png" srcset="/img/loading.gif" lazyload
-                   class="img-fluid" alt="avatar">
-            </div>
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
+      
 
-<div class="text-center">
-  <div class="about-info">
-    <div class="about-name">Fluid</div>
-    <div class="about-intro">An elegant theme for Hexo</div>
-    <div class="about-icons">
-      
-        
-        
-        
-        <a href=https://github.com class="
-           hint--bottom hint--rounded"
-           aria-label=GitHub
-           target="_blank"
-        >
-          <i class="iconfont icon-github-fill" aria-hidden="true"></i>
-          
-        </a>
-      
-        
-        
-        
-        <a href=https://douban.com class="
-           hint--bottom hint--rounded"
-           aria-label=豆瓣
-           target="_blank"
-        >
-          <i class="iconfont icon-douban-fill" aria-hidden="true"></i>
-          
-        </a>
-      
-        
-        
-        
-        <a  class="qr-trigger
-           "
-           
-           target="_self"
-        >
-          <i class="iconfont icon-wechat-fill" aria-hidden="true"></i>
-          
-            <img class="qr-img" src="/img/favicon.png" srcset="/img/loading.gif" lazyload alt="qrcode" />
-          
-        </a>
-      
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Java多态</h1>
+            
+            <div class="markdown-body">
+              <h1 id="Java多态"><a href="#Java多态" class="headerlink" title="Java多态"></a>Java多态</h1><h3 id="1-多态性："><a href="#1-多态性：" class="headerlink" title="1.多态性："></a>1.多态性：</h3><p>父类或接口定义的引用变量可以指向子类或具体实现类的实例对象。提高了程序的拓展性。</p>
+<p>在Java中有两种形式可以实现多态：继承（多个子类对同一方法的重写）和接口（实现接口并覆盖接口中同一方法）。</p>
+<p>方法重载（overload）实现的是编译时的多态性（也称为前绑定），而方法重写（override）实现的是运行时的多态性（也称为后绑定）。</p>
+<p>一个引用变量到底会指向哪个类的实例对象，该引用变量发出的方法调用到底是哪个类中实现的方法，必须在由程序运行期间才能决定。运行时的多态是面向对象最精髓的东西，要实现多态需要做两件事：</p>
+<p>方法重写（子类继承父类并重写父类中已有的或抽象的方法）；<br>对象造型（用父类型引用子类型对象，这样同样的引用调用同样的方法就会根据子类对象的不同而表现出不同的行为）。</p>
+<h3 id="2-什么是多态机制？Java语言是如何实现多态的？"><a href="#2-什么是多态机制？Java语言是如何实现多态的？" class="headerlink" title="2.什么是多态机制？Java语言是如何实现多态的？"></a>2.什么是多态机制？Java语言是如何实现多态的？</h3><p>所谓多态就是指程序中定义的引用变量所指向的具体类型和通过该引用变量发出的方法调用在编程时并不确定，而是在程序运行期间才确定，即一个引用变量倒底会指向哪个类的实例对象，该引用变量发出的方法调用到底是哪个类中实现的方法，必须在由程序运行期间才能决定。因为在程序运行时才确定具体的类，这样，不用修改源程序代码，就可以让引用变量绑定到各种不同的类实现上，从而导致该引用调用的具体方法随之改变，即不修改程序代码就可以改变程序运行时所绑定的具体代码，让程序可以选择多个运行状态，这就是多态性。</p>
+<p>多态分为编译时多态和运行时多态。其中编辑时多态是静态的，主要是指方法的重载，它是根据参数列表的不同来区分不同的函数，通过编辑之后会变成两个不同的函数，在运行时谈不上多态。而运行时多态是动态的，它是通过动态绑定来实现的，也就是我们所说的多态性。</p>
+<h3 id="3-多态的实现"><a href="#3-多态的实现" class="headerlink" title="3.多态的实现"></a>3.多态的实现</h3><p>Java实现多态有三个必要条件：继承、重写、向上转型。</p>
+<p>继承：在多态中必须存在有继承关系的子类和父类。</p>
+<p>重写：子类对父类中某些方法进行重新定义，在调用这些方法时就会调用子类的方法。</p>
+<p>向上转型：在多态中需要将子类的引用赋给父类对象，只有这样该引用才能够具备技能调用父类的方法和子类的方法。</p>
+<p>只有满足了上述三个条件，我们才能够在同一个继承结构中使用统一的逻辑实现代码处理不同的对象，从而达到执行不同的行为。</p>
+<p>对于Java而言，它多态的实现机制遵循一个原则：当超类对象引用变量引用子类对象时，被引用对象的类型而不是引用变量的类型决定了调用谁的成员方法，但是这个被调用的方法必须是在超类中定义过的，也就是说被子类覆盖的方法。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/JavaSE/">JavaSE</a>
+                    
+                  </div>
+                
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/12/06/mysql/MYSQL%20%E9%94%81/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">MYSQL锁总结</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/12/06/javase/Java%E5%AD%A6%E4%B9%A0%E8%B7%AF%E7%BA%BF%EF%BC%88JavaSE%EF%BC%89/">
+                        <span class="hidden-mobile">Java学习路线（个人总结）持续更新中...</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
     </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
   </div>
 </div>
 
-<article class="about-content page-content mt-5">
-  <div class="markdown-body">
-    <h1 id="All-technologies-will-eventually-find-answers-in-life-👋"><a href="#All-technologies-will-eventually-find-answers-in-life-👋" class="headerlink" title="All technologies will eventually find answers in life 👋"></a>All technologies will eventually find answers in life 👋</h1><ul>
-<li>🔭 I’m a graduate student</li>
-<li>🌱 I’m currently learning java</li>
-<li>👯 Hope to meet more interesting people</li>
-<li>🤔 My email：<a href="mailto:&#x31;&#50;&#x36;&#x33;&#49;&#x31;&#x32;&#x31;&#x39;&#54;&#x40;&#113;&#113;&#46;&#x63;&#111;&#109;">&#x31;&#50;&#x36;&#x33;&#49;&#x31;&#x32;&#x31;&#x39;&#54;&#x40;&#113;&#113;&#46;&#x63;&#111;&#109;</a></li>
-<li>💬 Living in Jiangsu</li>
-<li>:)</li>
-</ul>
-<p><a target="_blank" rel="noopener" href="https://github.com/anuraghazra/github-readme-stats?theme=dracula"><img src="https://github-readme-stats.vercel.app/api?username=mzy150430115&?theme=dracula" srcset="/img/loading.gif" lazyload alt="Anurag&#39;s github stats"></a></p>
+<!-- Custom -->
 
-  </div>
 
-  
-</article>
-
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     
 
     

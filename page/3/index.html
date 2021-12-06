@@ -19,7 +19,7 @@
   <meta name="description" content="志远Zy的博客，记录日常，技术分享">
 <meta property="og:type" content="website">
 <meta property="og:title" content="志远Zy的小窝">
-<meta property="og:url" content="http://example.com/index.html">
+<meta property="og:url" content="http://example.com/page/3/index.html">
 <meta property="og:site_name" content="志远Zy的小窝">
 <meta property="og:description" content="志远Zy的博客，记录日常，技术分享">
 <meta property="og:locale" content="zh_CN">
@@ -192,95 +192,53 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/12/06/springcloud/spring%20cloud%20config/" target="_self">
-          
+        <a href="/2021/12/06/springcloud/spring%20cloud%20erueka/" target="_self">
+          Spring Cloud erueka
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/12/06/springcloud/spring%20cloud%20config/" target="_self">
+        <a href="/2021/12/06/springcloud/spring%20cloud%20erueka/" target="_self">
           
           
             
           
-          
-        </a>
-      </p>
+          注册中心实现方案
 
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-12-06 15:10" pubdate>
-              2021-12-06
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
 
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/12/06/hello-world/" target="_self">
-          一个只会写代码撸猫的废物研究生
-        </a>
-      </h1>
 
-      <p class="index-excerpt">
-        <a href="/2021/12/06/hello-world/" target="_self">
-          
-          
-            
-          
-          我是一名来自江苏的Boy，本科毕业于南京工程学院，目前在辽宁科技大学读研，同时现也就职于某云计算大厂~
-喜欢研究技术，热爱编程，欢迎交流分享编程技术~
+产品
+实现机制
+实现语言
 
-        </a>
-      </p>
 
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-12-06 15:03" pubdate>
-              2021-12-06
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
 
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/12/06/Dubbo/dubbo%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" target="_self">
-          Dubbo学习笔记
-        </a>
-      </h1>
+Zookeeper
+提供一致性，使用基于Paxos协议的ZAB协议
+Java
 
-      <p class="index-excerpt">
-        <a href="/2021/12/06/Dubbo/dubbo%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" target="_self">
-          
-          
-            
-          
-          Dubbo学习笔记（一） Dubbo出现的背景
-单体应用    所有功能都在一个应用之中，机器数量在1-10之间
-垂直应用    将应用按照功能进行划分，拆分成互不相干的小应用，应用之间应该没有交互
-分布式应用    “合久必分”，虽然提供的是独立的服务，但是可以被其他应用或服务所调用。     SOA = Service-Oriented Architecture 面向服务的架构     通过定
+
+Etcd
+使用Raft协议
+Golang
+
+
+Consul
+使用Raft协议，并提供可以直接使用的成品
+Golang
+
+
+Eureka
+来自Netflix，采用自身的一套实现机制
+Java
+
+
+Nacos
+来自阿里巴巴，采用自身的一套实现机制
+Java
+
+
+Sp
         </a>
       </p>
 
@@ -297,7 +255,7 @@
           <div class="post-meta mr-3">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/%E5%88%86%E5%B8%83%E5%BC%8F%E5%8F%8A%E5%BE%AE%E6%9C%8D%E5%8A%A1/">分布式及微服务</a>
+              <a href="/categories/SpringCloud/">SpringCloud</a>
             
           </div>
         
@@ -312,23 +270,24 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/12/06/javase/HashMap%E6%80%BB%E7%BB%93/" target="_self">
-          HashMap总结
+        <a href="/2021/12/06/springcloud/spring%20cloud%20netflix%20ribbon/" target="_self">
+          Spring Cloud nextflix ribbon
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/12/06/javase/HashMap%E6%80%BB%E7%BB%93/" target="_self">
+        <a href="/2021/12/06/springcloud/spring%20cloud%20netflix%20ribbon/" target="_self">
           
           
             
           
-          HashMap==1.面试题==1.JDK1.8：数组+链表+红黑树
-2.插入原理
+          @LoadBalance注解Q：为什么通过@LoadBalance注册创建的RestTemplate就能自动具备客户端负载均衡的能力？
+A：
 
+@LoadBalanced注解就是用来给RestTemplate添加标记，以便使用负载均衡客户端LoadBalanaceClient来配置他。
 
+​        在RestTemplate发送请求时，会被LoadBalanceInterceptor拦截
 
-判断数组是否为空，为空进行初始化;不为空，计算 k 的 hash 值，通过(n - 1) &amp; hash计算应当存放在数组中的下标 index;查看 table[index] 是否存在数据，没有数据就构造一个Node节点存放在 table[index] 中；存在数据，说明发生了hash冲突(存在二个节点
         </a>
       </p>
 
@@ -345,7 +304,7 @@
           <div class="post-meta mr-3">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/JavaSE/">JavaSE</a>
+              <a href="/categories/SpringCloud/">SpringCloud</a>
             
           </div>
         
@@ -360,24 +319,21 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/12/06/javase/JVM/" target="_self">
-          JVM
+        <a href="/2021/12/06/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/Java%20Queue%E7%B1%BB/" target="_self">
+          Java Queue类
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/12/06/javase/JVM/" target="_self">
+        <a href="/2021/12/06/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/Java%20Queue%E7%B1%BB/" target="_self">
           
           
             
           
-          JVM1.说一下 JVM 的主要组成部分及其作用？
-2.说一下堆栈的区别？物理地址
-堆的物理地址分配对对象是不连续的。因此性能慢些。在GC的时候也要考虑到不连续的分配，所以有各种算法。
-比如，标记-消除，复制，标记-压缩，分代（即新生代使用复制算法，老年代使用标记——压缩）
-栈使用的是数据结构中的栈，先进后出的原则，物理地址分配是连续的。所以性能快。
-内存分别
-堆因为是不连续的，所以分配的内存是在
+          
+
+1、offer()和add()的区别add()和offer()都是向队列中添加一个元素。但是如果想在一个满的队列中加入一个新元素，调用 add() 方法就会==抛出一个 unchecked 异常==，而调用 offer() 方法会返回==false==。可以据此在程序中进行有效的判断！
+2、peek()和element()的区别peek()和element()都将在不移除的情况下返回队头，但是
         </a>
       </p>
 
@@ -394,7 +350,7 @@
           <div class="post-meta mr-3">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/JavaSE/">JavaSE</a>
+              <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%8F%8A%E7%AE%97%E6%B3%95/">数据结构及算法</a>
             
           </div>
         
@@ -409,20 +365,20 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/12/06/javase/Java%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" target="_self">
-          单例模式（Java语言）
+        <a href="/2021/12/06/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/Java%20Stack%E7%B1%BB/" target="_self">
+          Java Stack类
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/12/06/javase/Java%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" target="_self">
+        <a href="/2021/12/06/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/Java%20Stack%E7%B1%BB/" target="_self">
           
           
             
           
-          Java单例模式Enum实现单例123456public enum EnumSingle &#123;    INSTANCE;    public EnumSingle getInstance()&#123;        return INSTANCE;    &#125;&#125;
+          peek()和pop()java里Stack的peek方法是返回栈顶的元素但不移除它。
+但Stack的pop方法是会移除的。
 
-饿汉式单例12345678910public class Hungry &#123;    private
         </a>
       </p>
 
@@ -439,7 +395,7 @@
           <div class="post-meta mr-3">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%EF%BC%88Java%E8%AF%AD%E8%A8%80%EF%BC%89/">设计模式（Java语言）</a>
+              <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%8F%8A%E7%AE%97%E6%B3%95/">数据结构及算法</a>
             
           </div>
         
@@ -454,33 +410,18 @@
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/12/06/javase/Java%E5%9F%BA%E7%A1%80/" target="_self">
-          Java面试题
+        <a href="/2021/12/06/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/N%E5%8F%89%E6%A0%91%E7%9A%84%E5%89%8D%E4%B8%AD%E5%90%8E%E9%81%8D%E5%8E%86/" target="_self">
+          N叉树的前中后遍历
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/12/06/javase/Java%E5%9F%BA%E7%A1%80/" target="_self">
+        <a href="/2021/12/06/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/N%E5%8F%89%E6%A0%91%E7%9A%84%E5%89%8D%E4%B8%AD%E5%90%8E%E9%81%8D%E5%8E%86/" target="_self">
           
           
             
           
-          Java笔试题常见：equals与==的区别：
-
-==是判断两个变量或实例是不是指向同一个内存空间，equals是判断两个变量或实例所指向的内存空间的值是不是相同 
-
-==是指对内存地址进行比较 ， equals()是对字符串的内容进行比较
-
-==指引用是否相同， equals()指的是值是否相同
-
-
-内部类
-
-
-
-
-floor: 求小于参数的最大整数。返回double类型—–n. 地板，地面
-​
+          1234567891011121314151617181920212223//给定一个 N 叉树，返回其节点值的 前序遍历 。 class Solution &#123;    List&lt;Integer&gt; list = new ArrayList&lt;&gt;();    public List&lt;Integer&gt; preorder(Node root) &#123;   
         </a>
       </p>
 
@@ -497,7 +438,7 @@ floor: 求小于参数的最大整数。返回double类型—–n. 地板，地�
           <div class="post-meta mr-3">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/%E9%9D%A2%E8%AF%95/">面试</a>
+              <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%8F%8A%E7%AE%97%E6%B3%95/">数据结构及算法</a>
             
           </div>
         
@@ -512,24 +453,25 @@ floor: 求小于参数的最大整数。返回double类型—–n. 地板，地�
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/12/06/mysql/MYSQL%E7%9F%A5%E8%AF%86%E7%82%B9/" target="_self">
-          MYSQL知识点（持续更新...）
+        <a href="/2021/12/06/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/PriorityQueue%EF%BC%88%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97%EF%BC%89/" target="_self">
+          PriorityQueue（优先队列）
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/12/06/mysql/MYSQL%E7%9F%A5%E8%AF%86%E7%82%B9/" target="_self">
+        <a href="/2021/12/06/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/PriorityQueue%EF%BC%88%E4%BC%98%E5%85%88%E9%98%9F%E5%88%97%EF%BC%89/" target="_self">
           
           
             
           
-          MYSQL刷题知识点：limit 和 offsetlimit n子句表示查询结果返回前n条数据
-offset n表示跳过x条语句
-limit y offset x 分句表示查询结果跳过 x 条数据，读取前 y 条数据
-使用limit和offset，降序排列再返回第二条记录可以得到第二大的值。
-ifullifnull(a,b)函数解释：
-如果value1不是空，结果返回a
-如果value1是空，结果
+          PriorityQueue（优先队列）
+解释：每次从优先队列中取出来的元素要么是最大值（最大堆），要么是最小值（最小堆）。
+
+优先队列在Java中的使用的最小堆，意味着每次从队列取出的都是最小的元素。
+
+对于任意一个数组下标i，满足：左孩子节点的下标left(i)=2 * i，右孩子节点right(i) = 2 * i+1
+
+PriorityQueue的peek()和element操作是常数时间，
         </a>
       </p>
 
@@ -546,7 +488,7 @@ ifullifnull(a,b)函数解释：
           <div class="post-meta mr-3">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+              <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%8F%8A%E7%AE%97%E6%B3%95/">数据结构及算法</a>
             
           </div>
         
@@ -561,28 +503,25 @@ ifullifnull(a,b)函数解释：
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/12/06/mysql/MYSQL%E7%B4%A2%E5%BC%95/" target="_self">
-          MYSQL索引总结
+        <a href="/2021/12/06/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E4%BA%8C%E5%8F%89%E5%B9%B3%E8%A1%A1%E6%A0%91/" target="_self">
+          二叉平衡树
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/12/06/mysql/MYSQL%E7%B4%A2%E5%BC%95/" target="_self">
+        <a href="/2021/12/06/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E4%BA%8C%E5%8F%89%E5%B9%B3%E8%A1%A1%E6%A0%91/" target="_self">
           
           
             
           
-          MYSQL索引（20210603）1.索引的分类：==从应用层次上来划分：==
-① 普通索引（单列索引）
-② 复合索引（组合索引）
-③ 唯一索引
-④ 主键索引
-⑤ 全文索引
-⑥ 强制索引
-==从表记录的排列顺序和索引的排列顺序是否一致来划分==
-① 聚集索引：表记录的排列顺序和索引的排列顺序一致。
-② 非聚集索引：表记录的排列顺序和索引的排列顺序不一致。
-2.索引的创建、查询和删除① 普通索引（单
+          二叉平衡树定义：对于任意一个子树而言，左子树和右子树高度只差不超过1.
+
+图一，很明显就能看出图1中任何子树的高度差都在没有超过1，
+破坏平衡型的类型分为了四种，分别是LL型、RR型、LR型和RL型（L=left,R=right）。
+LL型
+
+
+
         </a>
       </p>
 
@@ -599,7 +538,7 @@ ifullifnull(a,b)函数解释：
           <div class="post-meta mr-3">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+              <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%8F%8A%E7%AE%97%E6%B3%95/">数据结构及算法</a>
             
           </div>
         
@@ -614,29 +553,28 @@ ifullifnull(a,b)函数解释：
     <article class="col-12 col-md-12 mx-auto index-info">
       <h1 class="index-header">
         
-        <a href="/2021/12/06/mysql/MYSQL%20%E9%94%81/" target="_self">
-          MYSQL锁总结
+        <a href="/2021/12/06/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/" target="_self">
+          二叉搜索树
         </a>
       </h1>
 
       <p class="index-excerpt">
-        <a href="/2021/12/06/mysql/MYSQL%20%E9%94%81/" target="_self">
+        <a href="/2021/12/06/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/" target="_self">
           
           
             
           
-          ==MYSQL 锁==1.**共享锁(**读锁，S锁)
-开启两个事物：
-1begin
+          二叉搜索树二叉搜索锁（BST）满足的性质：
+每个节点中的值必须大于（或等于）存储在其左侧子树中的任何值。
+每个节点中的值必须小于（或等于）存储在其右子树中的任何值。
 
-执行SQL并设置锁：
-1select * from lock1 where id = 3 lock in share mode;
 
-修改数据：
-1update lock1 set num = 34 where id = 3;
 
-发现没有结果，结果被阻塞 ，表面不允许对第二个SQL进行操作，也是共享锁的特点。
-2
+如何判断二叉搜索树：（1）当前节点下，其左子树只包含小于当前节点的数；
+（2）其右子树只包含大于当前节点的数；
+（3）所有左子树右子树必须也是二叉搜索树。
+
+看到二叉搜索树就想这句话，不会的请背诵：中序遍历二叉搜索树等于遍历有序
         </a>
       </p>
 
@@ -653,7 +591,110 @@ ifullifnull(a,b)函数解释：
           <div class="post-meta mr-3">
             <i class="iconfont icon-category"></i>
             
-              <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/">数据库</a>
+              <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%8F%8A%E7%AE%97%E6%B3%95/">数据结构及算法</a>
+            
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/12/06/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E4%BA%8C%E5%8F%89%E6%A0%91%E5%88%B7%E9%A2%98%E9%A1%BA%E5%BA%8F/" target="_self">
+          二叉树刷题顺序LeetCode
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/12/06/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E4%BA%8C%E5%8F%89%E6%A0%91%E5%88%B7%E9%A2%98%E9%A1%BA%E5%BA%8F/" target="_self">
+          
+          
+            
+          
+          
+二叉树理论基础
+二叉树：递归遍历
+二叉树：迭代法遍历（不统一方式）
+二叉树：迭代吗遍历（统一方式）
+102.二叉树的层序遍历
+226.翻转二叉树
+101.对称二叉树
+104.二叉树的最大深度
+111.二叉树的最小深度
+222.完全二叉树的节点个数
+110.平衡二叉树
+257.二叉树的所有路径
+递归中隐藏回溯
+404.左叶子之和
+513.找树左下角的值
+112.路径总和
+106.从中序与后序遍历序
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-12-06 15:03" pubdate>
+              2021-12-06
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%8F%8A%E7%AE%97%E6%B3%95/">数据结构及算法</a>
+            
+          </div>
+        
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h1 class="index-header">
+        
+        <a href="/2021/12/06/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E4%BA%8C%E5%8F%89%E6%A0%91%E5%89%8D%E4%B8%AD%E5%90%8E%E9%81%8D%E5%8E%86/" target="_self">
+          二叉树前中后遍历
+        </a>
+      </h1>
+
+      <p class="index-excerpt">
+        <a href="/2021/12/06/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E4%BA%8C%E5%8F%89%E6%A0%91%E5%89%8D%E4%B8%AD%E5%90%8E%E9%81%8D%E5%8E%86/" target="_self">
+          
+          
+            
+          
+          1234567891011121314151617181920212223242526272829303132333435/** 定义 postorder(root) 表示当前遍历到 root 节点的答案。按照定义，我们只要递归调用 postorder(root-&gt;left) 来遍历 root 节点的左子树，然后递归调用postorder(root-&gt;right) 来遍历 root 节
+        </a>
+      </p>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2021-12-06 15:03" pubdate>
+              2021-12-06
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-category"></i>
+            
+              <a href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%8F%8A%E7%AE%97%E6%B3%95/">数据结构及算法</a>
             
           </div>
         
@@ -666,7 +707,7 @@ ifullifnull(a,b)函数解释：
 
   <nav aria-label="navigation">
     <span class="pagination" id="pagination">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/#board">2</a><a class="page-number" href="/page/3/#board">3</a><a class="page-number" href="/page/4/#board">4</a><a class="extend next" rel="next" href="/page/2/#board"><i class="iconfont icon-arrowright"></i></a>
+      <a class="extend prev" rel="prev" href="/page/2/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/#board">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/#board">4</a><a class="extend next" rel="next" href="/page/4/#board"><i class="iconfont icon-arrowright"></i></a>
     </span>
   </nav>
 

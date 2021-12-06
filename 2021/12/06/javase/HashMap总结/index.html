@@ -1,0 +1,505 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/favicon.png">
+  <link rel="icon" href="/img/favicon.png">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="description" content="志远Zy的博客，记录日常，技术分享">
+  <meta name="author" content="志远Zy">
+  <meta name="keywords" content="">
+  <meta name="description" content="HashMap&#x3D;&#x3D;1.面试题&#x3D;&#x3D;1.JDK1.8：数组+链表+红黑树 2.插入原理    判断数组是否为空，为空进行初始化;不为空，计算 k 的 hash 值，通过(n - 1) &amp; hash计算应当存放在数组中的下标 index;查看 table[index] 是否存在数据，没有数据就构造一个Node节点存放在 table[index] 中；存在数据，说明发生了hash冲突(存在二个节点">
+<meta property="og:type" content="article">
+<meta property="og:title" content="HashMap总结">
+<meta property="og:url" content="http://example.com/2021/12/06/javase/HashMap%E6%80%BB%E7%BB%93/index.html">
+<meta property="og:site_name" content="志远Zy的小窝">
+<meta property="og:description" content="HashMap&#x3D;&#x3D;1.面试题&#x3D;&#x3D;1.JDK1.8：数组+链表+红黑树 2.插入原理    判断数组是否为空，为空进行初始化;不为空，计算 k 的 hash 值，通过(n - 1) &amp; hash计算应当存放在数组中的下标 index;查看 table[index] 是否存在数据，没有数据就构造一个Node节点存放在 table[index] 中；存在数据，说明发生了hash冲突(存在二个节点">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWdrci5jbi1iai51ZmlsZW9zLmNvbS85ZDkyZGRkYS1lZmRiLTRmZjctYTlmYi00MTFjMTY5MzNkYmMucG5n?x-oss-process=image/format,png">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/2020031712385760.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3poZW5nd2FuZ3p3,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2021-12-06T07:03:12.000Z">
+<meta property="article:modified_time" content="2021-12-06T07:15:33.074Z">
+<meta property="article:author" content="志远Zy">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWdrci5jbi1iai51ZmlsZW9zLmNvbS85ZDkyZGRkYS1lZmRiLTRmZjctYTlmYi00MTFjMTY5MzNkYmMucG5n?x-oss-process=image/format,png">
+  
+  <title>HashMap总结 - 志远Zy的小窝</title>
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
+
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1749284_ba1fz6golrf.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1736178_kmeydafke9r.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+<!-- 自定义样式保持在最底部 -->
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.8.12","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"right","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"copy_btn":true,"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"baidu":null,"google":null,"gtag":null,"tencent":{"sid":null,"cid":null},"woyaola":null,"cnzz":null,"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname"}},"search_path":"/local-search.xml"};
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+
+<body>
+  <header style="height: 70vh;">
+    <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>志远Zy的小窝</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/">
+                <i class="iconfont icon-home-fill"></i>
+                首页
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/">
+                <i class="iconfont icon-archive-fill"></i>
+                归档
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/">
+                <i class="iconfont icon-category-fill"></i>
+                分类
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/">
+                <i class="iconfont icon-tags-fill"></i>
+                标签
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/">
+                <i class="iconfont icon-user-fill"></i>
+                关于
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              &nbsp;<i class="iconfont icon-search"></i>&nbsp;
+            </a>
+          </li>
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">&nbsp;<i
+                class="iconfont icon-dark" id="color-toggle-icon"></i>&nbsp;</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+    <div class="banner" id="banner" parallax=true
+         style="background: url('/img/default.png') no-repeat center center;
+           background-size: cover;">
+      <div class="full-bg-img">
+        <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+          <div class="page-header text-center fade-in-up">
+            <span class="h2" id="subtitle" title="HashMap总结">
+              
+            </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-12-06 15:03" pubdate>
+        2021年12月6日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      4.2k 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      13 分钟
+    </span>
+  
+
+  
+  
+</div>
+
+            
+          </div>
+
+          
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">HashMap总结</h1>
+            
+            <div class="markdown-body">
+              <h1 id="HashMap"><a href="#HashMap" class="headerlink" title="HashMap"></a>HashMap</h1><h3 id="1-面试题"><a href="#1-面试题" class="headerlink" title="==1.面试题=="></a>==1.面试题==</h3><h5 id="1-JDK1-8：数组-链表-红黑树"><a href="#1-JDK1-8：数组-链表-红黑树" class="headerlink" title="1.JDK1.8：数组+链表+红黑树"></a>1.JDK1.8：数组+链表+红黑树</h5><p><img src="https://imgconvert.csdnimg.cn/aHR0cHM6Ly9pbWdrci5jbi1iai51ZmlsZW9zLmNvbS85ZDkyZGRkYS1lZmRiLTRmZjctYTlmYi00MTFjMTY5MzNkYmMucG5n?x-oss-process=image/format,png" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h5 id="2-插入原理"><a href="#2-插入原理" class="headerlink" title="2.插入原理"></a>2.插入原理</h5><img src="https://img-blog.csdnimg.cn/2020031712385760.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3poZW5nd2FuZ3p3,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="在这里插入图片描述" style="zoom: 80%;" />
+
+
+
+<p>判断数组是否为空，为空进行初始化;<br>不为空，计算 k 的 hash 值，通过(n - 1) &amp; hash计算应当存放在数组中的下标 index;<br>查看 table[index] 是否存在数据，没有数据就构造一个Node节点存放在 table[index] 中；<br>存在数据，说明发生了hash冲突(存在二个节点key的hash值一样), 继续判断key是否相等，相等，用新的value替换原数据(onlyIfAbsent为false)；<br>如果不相等，判断当前节点类型是不是树型节点，如果是树型节点，创造树型节点插入红黑树中；(如果当前节点是树型节点证明当前已经是红黑树了)<br>如果不是树型节点，创建普通Node加入链表中；判断链表长度是否大于 8并且数组长度大于64， 大于的话链表转换为红黑树；<br>插入完成之后判断当前节点数是否大于阈值，如果大于开始扩容为原数组的二倍。</p>
+<h5 id="3-HashMap如何处理哈希碰撞？"><a href="#3-HashMap如何处理哈希碰撞？" class="headerlink" title="3.HashMap如何处理哈希碰撞？"></a>3.HashMap如何处理哈希碰撞？</h5><p>哈希冲突的解决方案有多种:</p>
+<p><strong>开放地址法（发生冲突，继续寻找下一块未被占用的存储地址），</strong></p>
+<p><strong>再散列函数法，建立公共溢出区：把冲突的都放在另一个地方，不在表里面。</strong></p>
+<p><strong>链地址法（JDK1.7 链表，JDK1.8 链表+红黑树）</strong></p>
+<p>而HashMap即是采用了链地址法，也就是数组+链表的方式，</p>
+<p>简单来说，HashMap由数组+链表组成的，数组是HashMap的主体，链表则是主要为了解决哈希冲突而存在的，如果定位到的数组位置不含链表（当前entry的next指向null）,那么对于查找，添加等操作很快，仅需一次寻址即可；如果定位到的数组包含链表，对于添加操作，其时间复杂度为O(n)，首先遍历链表，存在即覆盖，否则新增；对于查找操作来讲，仍需遍历链表，然后通过key对象的equals方法逐一比对查找。所以，性能考虑，HashMap中的链表出现越少，性能才会越好。</p>
+<h5 id="3-HashMap怎么设定初始容量大小的？"><a href="#3-HashMap怎么设定初始容量大小的？" class="headerlink" title="3.HashMap怎么设定初始容量大小的？"></a>3.HashMap怎么设定初始容量大小的？</h5><p> 一般如果<code>new HashMap()</code> 不传值，默认大小是16，负载因子是0.75， 如果自己传入初始大小k，初始化大小为 大于k的 2的整数次方，例如如果传10，大小为16。</p>
+<h5 id="4-HashMap的哈希函数怎么设计的？为什么要这么设计？"><a href="#4-HashMap的哈希函数怎么设计的？为什么要这么设计？" class="headerlink" title="4.HashMap的哈希函数怎么设计的？为什么要这么设计？"></a>4.HashMap的哈希函数怎么设计的？为什么要这么设计？</h5><p>hash函数是先拿到 key 的hashcode，是一个32位的int值，然后让hashcode的高16位和低16位进行异或操作。</p>
+<p>这个也叫扰动函数，这么设计有二点原因：</p>
+<ol>
+<li>一定要尽可能降低hash碰撞，越分散越好；</li>
+<li>算法一定要尽可能高效，因为这是高频操作, 因此采用位运算；</li>
+</ol>
+<h5 id="5-为什么采用hashcode的高16位和低16位异或能降低hash碰撞？hash函数能不能直接用key的hashcode？"><a href="#5-为什么采用hashcode的高16位和低16位异或能降低hash碰撞？hash函数能不能直接用key的hashcode？" class="headerlink" title="5.为什么采用hashcode的高16位和低16位异或能降低hash碰撞？hash函数能不能直接用key的hashcode？"></a>5.为什么采用hashcode的高16位和低16位异或能降低hash碰撞？hash函数能不能直接用key的hashcode？</h5><p>​        因为key.hashCode()函数调用的是key键值类型自带的哈希函数，返回int型散列值。int值范围为**-2147483648~2147483647**，前后加起来大概40亿的映射空间。只要哈希函数映射得比较均匀松散，一般应用是很难出现碰撞的。但问题是一个40亿长度的数组，内存是放不下的。你想，如果HashMap数组的初始大小才16，用之前需要对数组的长度取模运算，得到的余数才能用来访问数组下标。<br>另外Java1.8相比1.7做了调整，1.7做了四次移位和四次异或，但明显Java 8觉得扰动做一次就够了，做4次的话，多了可能边际效用也不大，所谓为了效率考虑就改成一次了。</p>
+<h5 id="6-1-8对hash函数做了优化，1-8还有别的优化吗？为什么要这么做？"><a href="#6-1-8对hash函数做了优化，1-8还有别的优化吗？为什么要这么做？" class="headerlink" title="6.  1.8对hash函数做了优化，1.8还有别的优化吗？为什么要这么做？"></a>6.  1.8对hash函数做了优化，1.8还有别的优化吗？为什么要这么做？</h5><p>1.数组+链表改成了数组+链表或红黑树；<br>2.链表的插入方式从头插法改成了尾插法，简单说就是插入时，如果数组位置上已经有元素，1.7将新元素放到数组中，原始节点作为新节点的后继节点，1.8遍历链表，将元素放置到链表的最后；<br>3.扩容的时候1.7需要对原数组中的元素进行重新hash定位在新数组的位置，1.8采用更简单的判断逻辑，位置不变或索引+旧容量大小；<br>4.在插入时，1.7先判断是否需要扩容，再插入，1.8先进行插入，插入完成再判断是否需要扩容；</p>
+<ol>
+<li><p>防止发生hash冲突，链表长度过长，将时间复杂度由<code>O(n)</code>降为<code>O(logn)</code>;</p>
+</li>
+<li><p>因为1.7头插法扩容时，头插法会使链表发生反转，多线程环境下会产生环；</p>
+<p>3.扩容的时候为什么1.8 不用重新hash就可以直接定位原节点在新数据的位置呢?</p>
+</li>
+</ol>
+<p>这是由于扩容是扩大为原数组大小的2倍，用于计算数组位置的掩码仅仅只是高位多了一个1，怎么理解呢？</p>
+<p>扩容前长度为16，用于计算(n-1) &amp; hash 的二进制n-1为0000 1111，扩容为32后的二进制就高位多了1，为0001 1111。</p>
+<p>因为是&amp; 运算，1和任何数 &amp; 都是它本身，那就分二种情况，如下图：原数据hashcode高位第4位为0和高位为1的情况；</p>
+<p>第四位高位为0，重新hash数值不变，第四位为1，重新hash数值比原来大16（旧数组的容量）</p>
+<h5 id="7-HashMap是线程安全的吗？如果不是怎么解决？"><a href="#7-HashMap是线程安全的吗？如果不是怎么解决？" class="headerlink" title="7.HashMap是线程安全的吗？如果不是怎么解决？"></a>7.HashMap是线程安全的吗？如果不是怎么解决？</h5><p>1.不是，在多线程环境下，1.7 会产生死循环、数据丢失、数据覆盖的问题，1.8 中会有数据覆盖的问题，以1.8为例，当A线程判断index位置为空后正好挂起，B线程开始往index位置的写入节点数据，这时A线程恢复现场，执行赋值操作，就把A线程的数据给覆盖了；还有++size这个地方也会造成多线程同时扩容等问题。</p>
+<ol start="2">
+<li>Java中有==HashTable==、==Collections.synchronizedMap==、以及==ConcurrentHashMap==可以实现线程安全的Map。</li>
+</ol>
+<p>HashTable是直接在操作方法上加synchronized关键字，锁住整个数组，粒度比较大，</p>
+<p>Collections.synchronizedMap是使用Collections集合工具的内部类，通过传入Map封装出一个SynchronizedMap对象，内部定义了一个对象锁，方法内通过对象锁实现；</p>
+<p>ConcurrentHashMap使用分段锁，降低了锁粒度，让并发度大大提高。</p>
+<h5 id="8-ConcurrentHashMap的分段锁的实现原理吗？"><a href="#8-ConcurrentHashMap的分段锁的实现原理吗？" class="headerlink" title="8.ConcurrentHashMap的分段锁的实现原理吗？"></a>8.ConcurrentHashMap的分段锁的实现原理吗？</h5><p>ConcurrentHashMap成员变量使用volatile 修饰，免除了指令重排序，同时保证内存可见性，另外使用CAS操作和synchronized结合实现赋值操作，多线程操作只会锁住当前操作索引的节点。</p>
+<h5 id="9-为什么链表转红黑树的阈值是8，红黑树转链表的阈值是6？"><a href="#9-为什么链表转红黑树的阈值是8，红黑树转链表的阈值是6？" class="headerlink" title="9.为什么链表转红黑树的阈值是8，红黑树转链表的阈值是6？"></a>9.为什么链表转红黑树的阈值是8，红黑树转链表的阈值是6？</h5><p>因为经过计算，在hash函数设计合理的情况下，发生hash碰撞8次的几率为百万分之6，概率说话。。因为8够用了，至于为什么转回来是6，因为如果hash碰撞次数在8附近徘徊，会一直发生链表和红黑树的互相转化，为了预防这种情况的发生。</p>
+<h5 id="10-HashMap内部节点是无序的，根据hash值随机插入，LinkedHashMap-和-TreeMap是有序的Map。"><a href="#10-HashMap内部节点是无序的，根据hash值随机插入，LinkedHashMap-和-TreeMap是有序的Map。" class="headerlink" title="10.HashMap内部节点是无序的，根据hash值随机插入，LinkedHashMap 和 TreeMap是有序的Map。"></a>10.HashMap内部节点是无序的，根据hash值随机插入，LinkedHashMap 和 TreeMap是有序的Map。</h5><h5 id="10-LinkedHashMap怎么实现有序的？"><a href="#10-LinkedHashMap怎么实现有序的？" class="headerlink" title="10.LinkedHashMap怎么实现有序的？"></a>10.LinkedHashMap怎么实现有序的？</h5><p>LinkedHashMap内部维护了一个单链表，有头尾节点，同时LinkedHashMap节点Entry内部除了继承HashMap的Node属性，还有before 和 after用于标识前置节点和后置节点。可以实现按插入的顺序或访问顺序排序。</p>
+<h5 id="11-TreeMap怎么实现有序的？"><a href="#11-TreeMap怎么实现有序的？" class="headerlink" title="11.TreeMap怎么实现有序的？"></a>11.TreeMap怎么实现有序的？</h5><p>TreeMap是按照Key的自然顺序或者Comprator的顺序进行排序，内部是通过红黑树来实现。</p>
+<p>所以要么key所属的类实现Comparable接口，或者自定义一个实现了Comparator接口的比较器，传给TreeMap用于key的比较。</p>
+<h5 id="12-HashMap中的Hash码如何计算？为什么要这么做？"><a href="#12-HashMap中的Hash码如何计算？为什么要这么做？" class="headerlink" title="12.HashMap中的Hash码如何计算？为什么要这么做？"></a>12.HashMap中的Hash码如何计算？为什么要这么做？</h5><p>==1.8版本:==</p>
+<p>注意：HashCode（）是对象的Hash码，和HashMap中的Hash码不是同一个东西</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">final</span> <span class="hljs-keyword">int</span> <span class="hljs-title">hash</span><span class="hljs-params">(Object key)</span> </span>&#123;<br>        <span class="hljs-keyword">int</span> h;<br>        <span class="hljs-keyword">return</span> (key == <span class="hljs-keyword">null</span>) ? <span class="hljs-number">0</span> : (h = key.hashCode()) ^ (h &gt;&gt;&gt; <span class="hljs-number">16</span>);<br>    &#125;<br></code></pre></td></tr></table></figure>
+
+<p>h是对象的hashcode，h右移16位也就是取最高位的16位（一共32位）。<br>与原来的hashcode进行异或运算（同0异1）。<br>由此可知又移16位和HashCode的^运算，不对hashCode()的高16位进行改变：1&amp;0=1</p>
+<p>那么这样做的意义何在？</p>
+<p>目的：减少hash碰撞<br>在jvm虚拟机中，一个hashcode位32，那么右移16位进行打乱的^操作，即是对低16位一次打乱，而且混合后的低位掺杂了高位的部分特征，使高位的信息也被保留下来</p>
+<p>==1.7版本:==（功能和1.8版相似）</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-function"><span class="hljs-keyword">static</span> <span class="hljs-keyword">int</span> <span class="hljs-title">hash</span><span class="hljs-params">(<span class="hljs-keyword">int</span> h)</span> </span>&#123;<br>	h ^= (h &gt;&gt;&gt; <span class="hljs-number">20</span>) ^ (h &gt;&gt;&gt; <span class="hljs-number">12</span>);<br>	<span class="hljs-keyword">return</span> h ^ (h &gt;&gt;&gt; <span class="hljs-number">7</span>) ^ (h &gt;&gt;&gt; <span class="hljs-number">4</span>);<br>&#125;<br><br></code></pre></td></tr></table></figure>
+
+
+
+
+
+<h4 id="1当key力null时，进行put操作，数据会被放在哪个桶位-为什么"><a href="#1当key力null时，进行put操作，数据会被放在哪个桶位-为什么" class="headerlink" title="1当key力null时，进行put操作，数据会被放在哪个桶位?为什么?"></a>1当key力null时，进行put操作，数据会被放在哪个桶位?为什么?</h4><p>A：会被放在0这个桶位（区别于currentHashMap的判断）</p>
+<h4 id="2为什么HashMap内部的散列表数组长度一定是2的次方数"><a href="#2为什么HashMap内部的散列表数组长度一定是2的次方数" class="headerlink" title="2为什么HashMap内部的散列表数组长度一定是2的次方数"></a>2为什么HashMap内部的散列表数组长度一定是2的次方数</h4><p>A：减少Hash冲突，是内部散列性更好，如果不是2的次方数和key进行运算，会导致Hash冲突会很高，查询性能会很差。</p>
+<h4 id="3-HashMap内部的散列表结构，什么时候初始化，以及初始化大小分别有几种情况"><a href="#3-HashMap内部的散列表结构，什么时候初始化，以及初始化大小分别有几种情况" class="headerlink" title="3.HashMap内部的散列表结构，什么时候初始化，以及初始化大小分别有几种情况?"></a>3.HashMap内部的散列表结构，什么时候初始化，以及初始化大小分别有几种情况?</h4><p>A：四种构造方法，唯一一种对HashMap初始化的就是传入一个Map会初始化，其他三种构造方法都是在put元素的时候才会初始化。</p>
+<h4 id="4-HashMap为什么需要扩容，扩容resize又是如何实现的"><a href="#4-HashMap为什么需要扩容，扩容resize又是如何实现的" class="headerlink" title="4.HashMap为什么需要扩容，扩容resize又是如何实现的?"></a>4.HashMap为什么需要扩容，扩容resize又是如何实现的?</h4><p>A：考虑HashMap查询性能，数组长度太小，不管优化成什么样的数据结构都解决不了元素过多查询效率变慢的问题，所以我们要以牺牲空间换时间的解决方案。</p>
+<p>A：与运算，如果结果为1则存入新扩容的地方，如果结果为0，则还是在原数组。</p>
+<h4 id="5-JDK8中，HashMap为什么引入红黑树？"><a href="#5-JDK8中，HashMap为什么引入红黑树？" class="headerlink" title="5.JDK8中，HashMap为什么引入红黑树？"></a>5.JDK8中，HashMap为什么引入红黑树？</h4><p>A：优化查询过程中产生Hash冲突导致查询性能变慢的问题，如果只用链表的话，链表的最差时间复杂度是O（n）就是全部链子都跑一遍，但是如果优化成红黑树，那么他的最差时间复杂度就是树的高度，也就是O（log n），会省很多我们当前遍历的次数。</p>
+
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/JavaSE/">JavaSE</a>
+                    
+                  </div>
+                
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/12/06/Dubbo/dubbo%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Dubbo学习笔记</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/12/06/javase/JVM/">
+                        <span class="hidden-mobile">JVM</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v"
+                 for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+
+    
+  </main>
+
+  <footer class="text-center mt-5 py-3">
+  <div class="footer-content">
+     <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+  </div>
+  
+
+  
+
+  
+</footer>
+
+
+  <!-- SCRIPTS -->
+  
+  <script  src="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/nprogress@0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://cdn.jsdelivr.net/npm/jquery@3/dist/jquery.min.js" ></script>
+<script  src="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+<!-- Plugins -->
+
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+  
+
+
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
+
+
+
+
+
+
+  <script  src="https://cdn.jsdelivr.net/npm/typed.js@2/lib/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var title = document.getElementById('subtitle').title;
+      
+      typing(title)
+      
+    })(window, document);
+  </script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 主题的启动项 保持在最底部 -->
+<script  src="/js/boot.js" ></script>
+
+
+</body>
+</html>

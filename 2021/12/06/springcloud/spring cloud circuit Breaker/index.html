@@ -16,20 +16,37 @@
   <meta name="description" content="志远Zy的博客，记录日常，技术分享">
   <meta name="author" content="志远Zy">
   <meta name="keywords" content="">
-  <meta name="description" content="志远Zy的博客，记录日常，技术分享">
-<meta property="og:type" content="website">
-<meta property="og:title" content="归档">
-<meta property="og:url" content="http://example.com/archives/2021/index.html">
+  <meta name="description" content="Spring Cloud Circuit Beaker与服务容错 1.服务隔离：隔离媒介（资源）：线程（代码级别的集群）： 客户端请求线程（隔离媒介的访问）：  独占：各个业务事先分配好线程数，若其中某个业务中断了，剩余业务的线程不影响 共享：所有业务共享线程池，若某个业务的线程中断，则可能引起雪崩效应。  进程： 机房： 读写分离： 2.服务降级与服务熔断#### 区别：   熔断不依赖下层依赖">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring Cloud Circuit Beaker">
+<meta property="og:url" content="http://example.com/2021/12/06/springcloud/spring%20cloud%20circuit%20Breaker/index.html">
 <meta property="og:site_name" content="志远Zy的小窝">
-<meta property="og:description" content="志远Zy的博客，记录日常，技术分享">
+<meta property="og:description" content="Spring Cloud Circuit Beaker与服务容错 1.服务隔离：隔离媒介（资源）：线程（代码级别的集群）： 客户端请求线程（隔离媒介的访问）：  独占：各个业务事先分配好线程数，若其中某个业务中断了，剩余业务的线程不影响 共享：所有业务共享线程池，若某个业务的线程中断，则可能引起雪崩效应。  进程： 机房： 读写分离： 2.服务降级与服务熔断#### 区别：   熔断不依赖下层依赖">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-12-06T07:03:12.000Z">
+<meta property="article:modified_time" content="2021-12-06T07:19:42.355Z">
 <meta property="article:author" content="志远Zy">
 <meta name="twitter:card" content="summary_large_image">
   
-  <title>归档 - 志远Zy的小窝</title>
+  <title>Spring Cloud Circuit Beaker - 志远Zy的小窝</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -56,7 +73,7 @@
 
 
 <body>
-  <header style="height: 60vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
@@ -157,9 +174,43 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="归档">
+            <span class="h2" id="subtitle" title="Spring Cloud Circuit Beaker">
               
             </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-12-06 15:03" pubdate>
+        2021年12月6日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      473 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      1 分钟
+    </span>
+  
+
+  
+  
+</div>
 
             
           </div>
@@ -172,100 +223,128 @@
 
   <main>
     
-      <div class="container nopadding-x-md">
-        <div class="py-5" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-<div class="list-group">
-  <p class="h4">共计 34 篇文章</p>
-  <hr>
-  
-  
-    
       
-      <p class="h5">2021</p>
-    
-    <a href="/2021/12/06/springcloud/spring%20cloud%20config/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title"></span>
-      <time style="float: right;">12-06</time>
-    </a>
-  
-    
-    <a href="/2021/12/06/hello-world/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">一个只会写代码撸猫的废物研究生</span>
-      <time style="float: right;">12-06</time>
-    </a>
-  
-    
-    <a href="/2021/12/06/Dubbo/dubbo%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Dubbo学习笔记</span>
-      <time style="float: right;">12-06</time>
-    </a>
-  
-    
-    <a href="/2021/12/06/javase/HashMap%E6%80%BB%E7%BB%93/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">HashMap总结</span>
-      <time style="float: right;">12-06</time>
-    </a>
-  
-    
-    <a href="/2021/12/06/javase/JVM/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">JVM</span>
-      <time style="float: right;">12-06</time>
-    </a>
-  
-    
-    <a href="/2021/12/06/javase/Java%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">单例模式（Java语言）</span>
-      <time style="float: right;">12-06</time>
-    </a>
-  
-    
-    <a href="/2021/12/06/javase/Java%E5%9F%BA%E7%A1%80/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Java面试题</span>
-      <time style="float: right;">12-06</time>
-    </a>
-  
-    
-    <a href="/2021/12/06/mysql/MYSQL%E7%9F%A5%E8%AF%86%E7%82%B9/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">MYSQL知识点（持续更新...）</span>
-      <time style="float: right;">12-06</time>
-    </a>
-  
-    
-    <a href="/2021/12/06/mysql/MYSQL%E7%B4%A2%E5%BC%95/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">MYSQL索引总结</span>
-      <time style="float: right;">12-06</time>
-    </a>
-  
-    
-    <a href="/2021/12/06/mysql/MYSQL%20%E9%94%81/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">MYSQL锁总结</span>
-      <time style="float: right;">12-06</time>
-    </a>
-  
-</div>
 
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Spring Cloud Circuit Beaker</h1>
+            
+            <div class="markdown-body">
+              <h3 id="Spring-Cloud-Circuit-Beaker与服务容错"><a href="#Spring-Cloud-Circuit-Beaker与服务容错" class="headerlink" title="Spring Cloud Circuit Beaker与服务容错"></a>Spring Cloud Circuit Beaker与服务容错</h3><hr>
+<h2 id="1-服务隔离："><a href="#1-服务隔离：" class="headerlink" title="1.服务隔离："></a>1.服务隔离：</h2><h4 id="隔离媒介（资源）："><a href="#隔离媒介（资源）：" class="headerlink" title="隔离媒介（资源）："></a>隔离媒介（资源）：</h4><p>线程（代码级别的集群）：</p>
+<p>客户端请求线程（隔离媒介的访问）：</p>
+<ul>
+<li>独占：各个业务事先分配好线程数，若其中某个业务中断了，剩余业务的线程不影响</li>
+<li>共享：所有业务共享线程池，若某个业务的线程中断，则可能引起雪崩效应。</li>
+</ul>
+<p>进程：</p>
+<p>机房：</p>
+<p>读写分离：</p>
+<h2 id="2-服务降级与服务熔断"><a href="#2-服务降级与服务熔断" class="headerlink" title="2.服务降级与服务熔断"></a>2.服务降级与服务熔断</h2><pre><code>#### 区别：
+</code></pre>
+<ul>
+<li><p>熔断不依赖下层依赖服务的分级，一旦产生故障就断掉。</p>
+</li>
+<li><p>降级需要对下层依赖的业务分解，把产生故障的丢了，换一个轻量级的方案，是一种退而求其次的方法。</p>
+</li>
+</ul>
+<h2 id="3-服务限流"><a href="#3-服务限流" class="headerlink" title="3.服务限流"></a>3.服务限流</h2><p>所谓限流即流量限制，限流的目的是在遇到流量高峰期或者流量突增时，把流量速率限制在系统所能承受的合理范围内，不至于让系统被高流量击垮。</p>
+<p><strong>常见限流方式</strong></p>
+<ul>
+<li>限制单位时间段内调用量来限流。</li>
+<li>通过限制系统的并发调用程度来限流。</li>
+</ul>
+<hr>
+<ul>
+<li><p>计数器法</p>
+</li>
+<li><p>漏桶算法</p>
+</li>
+<li><p>令牌桶算法</p>
+</li>
+<li><p>限流算法</p>
+</li>
+</ul>
+<h3 id="四大熔断组件"><a href="#四大熔断组件" class="headerlink" title="四大熔断组件"></a>四大熔断组件</h3><ul>
+<li>netflix Hystrix</li>
+<li>Resilience4j（Hystrix升级版，官方推荐）</li>
+<li>Sentinel（Spring cloud alibaba）</li>
+<li>Spring Retry（Spring自带的框架）</li>
+</ul>
 
-  <nav aria-label="navigation">
-    <span class="pagination" id="pagination">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/2021/page/2/#board">2</a><a class="page-number" href="/archives/2021/page/3/#board">3</a><a class="page-number" href="/archives/2021/page/4/#board">4</a><a class="extend next" rel="next" href="/archives/2021/page/2/#board"><i class="iconfont icon-arrowright"></i></a>
-    </span>
-  </nav>
-
-
-
-
-              </div>
             </div>
-          </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/SpringCloud/">SpringCloud</a>
+                    
+                  </div>
+                
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/12/06/springcloud/spring%20cloud%20Netflix%20Zuul/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">spring cloud Netflix Zuul</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/12/06/springcloud/spring%20cloud%20netflix%20Hystrix/">
+                        <span class="hidden-mobile">Spring Cloud Hystrix</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
 
     
@@ -348,6 +427,19 @@
   
 
 
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
 
 
 

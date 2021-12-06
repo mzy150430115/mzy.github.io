@@ -16,20 +16,39 @@
   <meta name="description" content="志远Zy的博客，记录日常，技术分享">
   <meta name="author" content="志远Zy">
   <meta name="keywords" content="">
-  <meta name="description" content="志远Zy的博客，记录日常，技术分享">
-<meta property="og:type" content="website">
-<meta property="og:title" content="归档">
-<meta property="og:url" content="http://example.com/archives/2021/index.html">
+  <meta name="description" content="JVM1.说一下 JVM 的主要组成部分及其作用？ 2.说一下堆栈的区别？物理地址 堆的物理地址分配对对象是不连续的。因此性能慢些。在GC的时候也要考虑到不连续的分配，所以有各种算法。 比如，标记-消除，复制，标记-压缩，分代（即新生代使用复制算法，老年代使用标记——压缩） 栈使用的是数据结构中的栈，先进后出的原则，物理地址分配是连续的。所以性能快。 内存分别 堆因为是不连续的，所以分配的内存是在">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JVM">
+<meta property="og:url" content="http://example.com/2021/12/06/javase/JVM/index.html">
 <meta property="og:site_name" content="志远Zy的小窝">
-<meta property="og:description" content="志远Zy的博客，记录日常，技术分享">
+<meta property="og:description" content="JVM1.说一下 JVM 的主要组成部分及其作用？ 2.说一下堆栈的区别？物理地址 堆的物理地址分配对对象是不连续的。因此性能慢些。在GC的时候也要考虑到不连续的分配，所以有各种算法。 比如，标记-消除，复制，标记-压缩，分代（即新生代使用复制算法，老年代使用标记——压缩） 栈使用的是数据结构中的栈，先进后出的原则，物理地址分配是连续的。所以性能快。 内存分别 堆因为是不连续的，所以分配的内存是在">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200103213149526.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly90aGlua3dvbi5ibG9nLmNzZG4ubmV0,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2021-12-06T07:03:12.000Z">
+<meta property="article:modified_time" content="2021-12-06T07:13:36.844Z">
 <meta property="article:author" content="志远Zy">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200103213149526.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly90aGlua3dvbi5ibG9nLmNzZG4ubmV0,size_16,color_FFFFFF,t_70">
   
-  <title>归档 - 志远Zy的小窝</title>
+  <title>JVM - 志远Zy的小窝</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -56,7 +75,7 @@
 
 
 <body>
-  <header style="height: 60vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
@@ -157,9 +176,43 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="归档">
+            <span class="h2" id="subtitle" title="JVM">
               
             </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-12-06 15:03" pubdate>
+        2021年12月6日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      395 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      1 分钟
+    </span>
+  
+
+  
+  
+</div>
 
             
           </div>
@@ -172,100 +225,102 @@
 
   <main>
     
-      <div class="container nopadding-x-md">
-        <div class="py-5" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-<div class="list-group">
-  <p class="h4">共计 34 篇文章</p>
-  <hr>
-  
-  
-    
       
-      <p class="h5">2021</p>
-    
-    <a href="/2021/12/06/springcloud/spring%20cloud%20config/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title"></span>
-      <time style="float: right;">12-06</time>
-    </a>
-  
-    
-    <a href="/2021/12/06/hello-world/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">一个只会写代码撸猫的废物研究生</span>
-      <time style="float: right;">12-06</time>
-    </a>
-  
-    
-    <a href="/2021/12/06/Dubbo/dubbo%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Dubbo学习笔记</span>
-      <time style="float: right;">12-06</time>
-    </a>
-  
-    
-    <a href="/2021/12/06/javase/HashMap%E6%80%BB%E7%BB%93/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">HashMap总结</span>
-      <time style="float: right;">12-06</time>
-    </a>
-  
-    
-    <a href="/2021/12/06/javase/JVM/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">JVM</span>
-      <time style="float: right;">12-06</time>
-    </a>
-  
-    
-    <a href="/2021/12/06/javase/Java%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">单例模式（Java语言）</span>
-      <time style="float: right;">12-06</time>
-    </a>
-  
-    
-    <a href="/2021/12/06/javase/Java%E5%9F%BA%E7%A1%80/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Java面试题</span>
-      <time style="float: right;">12-06</time>
-    </a>
-  
-    
-    <a href="/2021/12/06/mysql/MYSQL%E7%9F%A5%E8%AF%86%E7%82%B9/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">MYSQL知识点（持续更新...）</span>
-      <time style="float: right;">12-06</time>
-    </a>
-  
-    
-    <a href="/2021/12/06/mysql/MYSQL%E7%B4%A2%E5%BC%95/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">MYSQL索引总结</span>
-      <time style="float: right;">12-06</time>
-    </a>
-  
-    
-    <a href="/2021/12/06/mysql/MYSQL%20%E9%94%81/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">MYSQL锁总结</span>
-      <time style="float: right;">12-06</time>
-    </a>
-  
-</div>
 
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">JVM</h1>
+            
+            <div class="markdown-body">
+              <h1 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h1><h3 id="1-说一下-JVM-的主要组成部分及其作用？"><a href="#1-说一下-JVM-的主要组成部分及其作用？" class="headerlink" title="1.说一下 JVM 的主要组成部分及其作用？"></a>1.说一下 JVM 的主要组成部分及其作用？</h3><p><img src="https://img-blog.csdnimg.cn/20200103213149526.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly90aGlua3dvbi5ibG9nLmNzZG4ubmV0,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="img"></p>
+<h3 id="2-说一下堆栈的区别？"><a href="#2-说一下堆栈的区别？" class="headerlink" title="2.说一下堆栈的区别？"></a>2.说一下堆栈的区别？</h3><p>物理地址</p>
+<p>堆的物理地址分配对对象是不连续的。因此性能慢些。在GC的时候也要考虑到不连续的分配，所以有各种算法。</p>
+<p>比如，标记-消除，复制，标记-压缩，分代（即新生代使用复制算法，老年代使用标记——压缩）</p>
+<p>栈使用的是数据结构中的栈，先进后出的原则，物理地址分配是连续的。所以性能快。</p>
+<p>内存分别</p>
+<p>堆因为是不连续的，所以分配的内存是在运行期确认的，因此大小不固定。一般堆大小远远大于栈。</p>
+<p>栈是连续的，所以分配的内存大小要在编译期就确认，大小是固定的。</p>
+<p>存放的内容</p>
+<p>堆存放的是对象的实例和数组。因此该区更关注的是数据的存储</p>
+<p>栈存放：局部变量，操作数栈，返回结果。该区更关注的是程序方法的执行。</p>
+<p>PS：</p>
+<p>静态变量放在方法区<br>静态的对象还是放在堆。<br>程序的可见度</p>
+<p>堆对于整个应用程序都是共享、可见的。</p>
+<p>栈只对于线程是可见的。所以也是线程私有。他的生命周期和线程相同。</p>
 
-  <nav aria-label="navigation">
-    <span class="pagination" id="pagination">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/2021/page/2/#board">2</a><a class="page-number" href="/archives/2021/page/3/#board">3</a><a class="page-number" href="/archives/2021/page/4/#board">4</a><a class="extend next" rel="next" href="/archives/2021/page/2/#board"><i class="iconfont icon-arrowright"></i></a>
-    </span>
-  </nav>
-
-
-
-
-              </div>
             </div>
-          </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/JavaSE/">JavaSE</a>
+                    
+                  </div>
+                
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/12/06/javase/HashMap%E6%80%BB%E7%BB%93/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">HashMap总结</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/12/06/javase/Java%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/">
+                        <span class="hidden-mobile">单例模式（Java语言）</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
 
     
@@ -348,6 +403,19 @@
   
 
 
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
 
 
 

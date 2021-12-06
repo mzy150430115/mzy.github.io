@@ -16,20 +16,37 @@
   <meta name="description" content="志远Zy的博客，记录日常，技术分享">
   <meta name="author" content="志远Zy">
   <meta name="keywords" content="">
-  <meta name="description" content="志远Zy的博客，记录日常，技术分享">
-<meta property="og:type" content="website">
-<meta property="og:title" content="归档">
-<meta property="og:url" content="http://example.com/archives/2021/index.html">
+  <meta name="description" content="Hystrix源码分析 HystrixCommand.java核心类： setter()：  12345678910&#x2F;&#x2F;服务分组的设置        protected final HystrixCommandGroupKey groupKey;&#x2F;&#x2F;命令的设置（服务级别的设置）protected HystrixCommandKey commandKey;&#x2F;&#x2F;线程池的设置protected Hyst">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Spring Cloud Hystrix">
+<meta property="og:url" content="http://example.com/2021/12/06/springcloud/spring%20cloud%20netflix%20Hystrix/index.html">
 <meta property="og:site_name" content="志远Zy的小窝">
-<meta property="og:description" content="志远Zy的博客，记录日常，技术分享">
+<meta property="og:description" content="Hystrix源码分析 HystrixCommand.java核心类： setter()：  12345678910&#x2F;&#x2F;服务分组的设置        protected final HystrixCommandGroupKey groupKey;&#x2F;&#x2F;命令的设置（服务级别的设置）protected HystrixCommandKey commandKey;&#x2F;&#x2F;线程池的设置protected Hyst">
 <meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2021-12-06T07:03:12.000Z">
+<meta property="article:modified_time" content="2021-12-06T07:20:12.104Z">
 <meta property="article:author" content="志远Zy">
 <meta name="twitter:card" content="summary_large_image">
   
-  <title>归档 - 志远Zy的小窝</title>
+  <title>Spring Cloud Hystrix - 志远Zy的小窝</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
+
+  <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/github-markdown-css@4/github-markdown.min.css" />
+  <link  rel="stylesheet" href="/lib/hint/hint.min.css" />
+
+  
+    
+    
+      
+      <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@10/styles/github-gist.min.css" />
+    
+  
+
+  
+    <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.css" />
+  
 
 
 <!-- 主题依赖的图标库，不要自行修改 -->
@@ -56,7 +73,7 @@
 
 
 <body>
-  <header style="height: 60vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
@@ -157,9 +174,43 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="归档">
+            <span class="h2" id="subtitle" title="Spring Cloud Hystrix">
               
             </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-12-06 15:03" pubdate>
+        2021年12月6日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      436 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      1 分钟
+    </span>
+  
+
+  
+  
+</div>
 
             
           </div>
@@ -172,100 +223,108 @@
 
   <main>
     
-      <div class="container nopadding-x-md">
-        <div class="py-5" id="board"
-          >
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
-
-<div class="list-group">
-  <p class="h4">共计 34 篇文章</p>
-  <hr>
-  
-  
-    
       
-      <p class="h5">2021</p>
-    
-    <a href="/2021/12/06/springcloud/spring%20cloud%20config/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title"></span>
-      <time style="float: right;">12-06</time>
-    </a>
-  
-    
-    <a href="/2021/12/06/hello-world/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">一个只会写代码撸猫的废物研究生</span>
-      <time style="float: right;">12-06</time>
-    </a>
-  
-    
-    <a href="/2021/12/06/Dubbo/dubbo%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Dubbo学习笔记</span>
-      <time style="float: right;">12-06</time>
-    </a>
-  
-    
-    <a href="/2021/12/06/javase/HashMap%E6%80%BB%E7%BB%93/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">HashMap总结</span>
-      <time style="float: right;">12-06</time>
-    </a>
-  
-    
-    <a href="/2021/12/06/javase/JVM/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">JVM</span>
-      <time style="float: right;">12-06</time>
-    </a>
-  
-    
-    <a href="/2021/12/06/javase/Java%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">单例模式（Java语言）</span>
-      <time style="float: right;">12-06</time>
-    </a>
-  
-    
-    <a href="/2021/12/06/javase/Java%E5%9F%BA%E7%A1%80/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">Java面试题</span>
-      <time style="float: right;">12-06</time>
-    </a>
-  
-    
-    <a href="/2021/12/06/mysql/MYSQL%E7%9F%A5%E8%AF%86%E7%82%B9/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">MYSQL知识点（持续更新...）</span>
-      <time style="float: right;">12-06</time>
-    </a>
-  
-    
-    <a href="/2021/12/06/mysql/MYSQL%E7%B4%A2%E5%BC%95/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">MYSQL索引总结</span>
-      <time style="float: right;">12-06</time>
-    </a>
-  
-    
-    <a href="/2021/12/06/mysql/MYSQL%20%E9%94%81/" class="list-group-item list-group-item-action">
-      <span class="archive-post-title">MYSQL锁总结</span>
-      <time style="float: right;">12-06</time>
-    </a>
-  
-</div>
 
-
-  <nav aria-label="navigation">
-    <span class="pagination" id="pagination">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/2021/page/2/#board">2</a><a class="page-number" href="/archives/2021/page/3/#board">3</a><a class="page-number" href="/archives/2021/page/4/#board">4</a><a class="extend next" rel="next" href="/archives/2021/page/2/#board"><i class="iconfont icon-arrowright"></i></a>
-    </span>
-  </nav>
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">Spring Cloud Hystrix</h1>
+            
+            <div class="markdown-body">
+              <h3 id="Hystrix源码分析"><a href="#Hystrix源码分析" class="headerlink" title="Hystrix源码分析"></a>Hystrix源码分析</h3><hr>
+<h4 id="HystrixCommand-java核心类："><a href="#HystrixCommand-java核心类：" class="headerlink" title="HystrixCommand.java核心类："></a>HystrixCommand.java核心类：</h4><ul>
+<li>setter()：</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-comment">//服务分组的设置        </span><br><span class="hljs-keyword">protected</span> <span class="hljs-keyword">final</span> HystrixCommandGroupKey groupKey;<br><span class="hljs-comment">//命令的设置（服务级别的设置）</span><br><span class="hljs-keyword">protected</span> HystrixCommandKey commandKey;<br><span class="hljs-comment">//线程池的设置</span><br><span class="hljs-keyword">protected</span> HystrixThreadPoolKey threadPoolKey;<br><span class="hljs-comment">//命令的属性</span><br><span class="hljs-keyword">protected</span> HystrixCommandProperties.Setter commandPropertiesDefaults;<br><span class="hljs-comment">//线程池的属性</span><br><span class="hljs-keyword">protected</span> HystrixThreadPoolProperties.Setter threadPoolPropertiesDefaults;<br></code></pre></td></tr></table></figure>
 
 
 
+<ul>
+<li>run()：实现依赖的业务逻辑（微服务之间的调用）</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><br></code></pre></td></tr></table></figure>
 
-              </div>
+<ul>
+<li>getFallBack()：实现服务回退处理</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs java"><br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>HystrixCiruitBreaker()</li>
+</ul>
+
             </div>
-          </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/SpringCloud/">SpringCloud</a>
+                    
+                  </div>
+                
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/12/06/springcloud/spring%20cloud%20circuit%20Breaker/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Spring Cloud Circuit Beaker</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/12/06/springcloud/spring%20cloud%20erueka/">
+                        <span class="hidden-mobile">Spring Cloud erueka</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
         </div>
       </div>
+    </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
+  </div>
+</div>
+
+<!-- Custom -->
+
+
     
 
     
@@ -348,6 +407,19 @@
   
 
 
+
+  
+    <script  src="https://cdn.jsdelivr.net/npm/tocbot@4/dist/tocbot.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/@fancyapps/fancybox@3/dist/jquery.fancybox.min.js" ></script>
+  
+  
+    <script  src="https://cdn.jsdelivr.net/npm/anchor-js@4/anchor.min.js" ></script>
+  
+  
+    <script defer src="https://cdn.jsdelivr.net/npm/clipboard@2/dist/clipboard.min.js" ></script>
+  
 
 
 

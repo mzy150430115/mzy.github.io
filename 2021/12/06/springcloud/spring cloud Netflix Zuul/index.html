@@ -16,19 +16,22 @@
   <meta name="description" content="志远Zy的博客，记录日常，技术分享">
   <meta name="author" content="志远Zy">
   <meta name="keywords" content="">
-  <meta name="description" content="我是一名来自江苏的Boy，本科毕业于南京工程学院，目前在辽宁科技大学读研，同时现也就职于某云计算大厂~ 喜欢研究技术，热爱编程，欢迎交流分享编程技术~ Java学习路线（个人总结）持续更新中…①&#x3D;&#x3D;第一阶段：JavaSE&#x3D;&#x3D;预科阶段（学编程之前你需要了解的知识！）123456Markdown语法硬件及冯诺依曼结构windows常用快捷键基本的Dos命令计算机语言发展史...  入门环境搭建（工欲善">
+  <meta name="description" content="spring cloud Netflix ZuulApi网关的三个左右 简化调用过程：提升性能，减少请求往返次数 向每个客户端提供最优的API 系统解耦：客户端与服务端的调用关系解耦，向客户端隐藏了应用如何被划分到微服务的细节，服务独立演进。  @EnableZuulProxy和@EnableZuulServer @EnableZuulProxy简单理解为@EnableZuulServer的增强版">
 <meta property="og:type" content="article">
-<meta property="og:title" content="欢迎来到技术人的世界">
-<meta property="og:url" content="http://example.com/2021/12/01/hello-world/index.html">
+<meta property="og:title" content="spring cloud Netflix Zuul">
+<meta property="og:url" content="http://example.com/2021/12/06/springcloud/spring%20cloud%20Netflix%20Zuul/index.html">
 <meta property="og:site_name" content="志远Zy的小窝">
-<meta property="og:description" content="我是一名来自江苏的Boy，本科毕业于南京工程学院，目前在辽宁科技大学读研，同时现也就职于某云计算大厂~ 喜欢研究技术，热爱编程，欢迎交流分享编程技术~ Java学习路线（个人总结）持续更新中…①&#x3D;&#x3D;第一阶段：JavaSE&#x3D;&#x3D;预科阶段（学编程之前你需要了解的知识！）123456Markdown语法硬件及冯诺依曼结构windows常用快捷键基本的Dos命令计算机语言发展史...  入门环境搭建（工欲善">
+<meta property="og:description" content="spring cloud Netflix ZuulApi网关的三个左右 简化调用过程：提升性能，减少请求往返次数 向每个客户端提供最优的API 系统解耦：客户端与服务端的调用关系解耦，向客户端隐藏了应用如何被划分到微服务的细节，服务独立演进。  @EnableZuulProxy和@EnableZuulServer @EnableZuulProxy简单理解为@EnableZuulServer的增强版">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-12-01T03:18:41.960Z">
-<meta property="article:modified_time" content="2021-12-06T06:44:37.171Z">
+<meta property="og:image" content="c:/Users/12631/AppData/Roaming/Typora/typora-user-images/image-20211107163844191.png">
+<meta property="og:image" content="c:/Users/12631/AppData/Roaming/Typora/typora-user-images/image-20211107164101107.png">
+<meta property="article:published_time" content="2021-12-06T07:03:12.000Z">
+<meta property="article:modified_time" content="2021-12-06T07:20:41.931Z">
 <meta property="article:author" content="志远Zy">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="c:/Users/12631/AppData/Roaming/Typora/typora-user-images/image-20211107163844191.png">
   
-  <title>欢迎来到技术人的世界 - 志远Zy的小窝</title>
+  <title>spring cloud Netflix Zuul - 志远Zy的小窝</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -174,7 +177,7 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="欢迎来到技术人的世界">
+            <span class="h2" id="subtitle" title="spring cloud Netflix Zuul">
               
             </span>
 
@@ -184,8 +187,8 @@
   
     <span class="post-meta">
       <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-      <time datetime="2021-12-01 11:18" pubdate>
-        2021年12月1日 上午
+      <time datetime="2021-12-06 15:03" pubdate>
+        2021年12月6日 下午
       </time>
     </span>
   
@@ -195,7 +198,7 @@
   
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      682 字
+      1.7k 字
     </span>
   
 
@@ -204,7 +207,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      2 分钟
+      5 分钟
     </span>
   
 
@@ -233,24 +236,78 @@
         <div class="py-5" id="board">
           <article class="post-content mx-auto">
             <!-- SEO header -->
-            <h1 style="display: none">欢迎来到技术人的世界</h1>
+            <h1 style="display: none">spring cloud Netflix Zuul</h1>
             
             <div class="markdown-body">
-              <p>我是一名来自江苏的Boy，本科毕业于南京工程学院，目前在辽宁科技大学读研，同时现也就职于某云计算大厂~</p>
-<p>喜欢研究技术，热爱编程，欢迎交流分享编程技术~</p>
-<h2 id="Java学习路线（个人总结）持续更新中…"><a href="#Java学习路线（个人总结）持续更新中…" class="headerlink" title="Java学习路线（个人总结）持续更新中…"></a>Java学习路线（个人总结）持续更新中…</h2><h3 id="①-第一阶段：JavaSE"><a href="#①-第一阶段：JavaSE" class="headerlink" title="①==第一阶段：JavaSE=="></a>①==第一阶段：JavaSE==</h3><h4 id="预科阶段（学编程之前你需要了解的知识！）"><a href="#预科阶段（学编程之前你需要了解的知识！）" class="headerlink" title="预科阶段（学编程之前你需要了解的知识！）"></a>预科阶段（学编程之前你需要了解的知识！）</h4><figure class="highlight markdown"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs markdown">Markdown语法<br>硬件及冯诺依曼结构<br>windows常用快捷键<br>基本的Dos命令<br>计算机语言发展史<br>...<br></code></pre></td></tr></table></figure>
+              <h2 id="spring-cloud-Netflix-Zuul"><a href="#spring-cloud-Netflix-Zuul" class="headerlink" title="spring cloud Netflix Zuul"></a>spring cloud Netflix Zuul</h2><h4 id="Api网关的三个左右"><a href="#Api网关的三个左右" class="headerlink" title="Api网关的三个左右"></a>Api网关的三个左右</h4><ul>
+<li>简化调用过程：提升性能，减少请求往返次数</li>
+<li>向每个客户端提供最优的API</li>
+<li>系统解耦：客户端与服务端的调用关系解耦，向客户端隐藏了应用如何被划分到微服务的细节，服务独立演进。</li>
+</ul>
+<h4 id="EnableZuulProxy和-EnableZuulServer"><a href="#EnableZuulProxy和-EnableZuulServer" class="headerlink" title="@EnableZuulProxy和@EnableZuulServer"></a>@EnableZuulProxy和@EnableZuulServer</h4><ul>
+<li><p>@EnableZuulProxy简单理解为@EnableZuulServer的增强版</p>
+</li>
+<li><p>当Zuul与==Eureka==、==Ribbon==等组件配合使用时，我们使用的是@EnableZuulProxy注解</p>
+</li>
+<li><p>@EnableZuulServer注解注解提供的内置过滤器==并不是创建一个反向代理服务器==或者尝试与Eureka进行集成</p>
+</li>
+<li><p>当我们使用==其它的注册中心==或者想要==自建路由机制==时可以使用@EnableZuulServer注解</p>
+</li>
+</ul>
+<h4 id="API网关和注册中心，负载均衡，服务容错之间的关系"><a href="#API网关和注册中心，负载均衡，服务容错之间的关系" class="headerlink" title="API网关和注册中心，负载均衡，服务容错之间的关系"></a>API网关和注册中心，负载均衡，服务容错之间的关系</h4><hr>
+<h4 id="Web应用服务器对HTTP请求的处理流程"><a href="#Web应用服务器对HTTP请求的处理流程" class="headerlink" title="Web应用服务器对HTTP请求的处理流程"></a>Web应用服务器对HTTP请求的处理流程</h4><img src="C:\Users\12631\AppData\Roaming\Typora\typora-user-images\image-20211107163844191.png" srcset="/img/loading.gif" lazyload alt="image-20211107163844191" style="zoom:80%;" />
 
-<h4 id="入门环境搭建（工欲善其事，必先利其器！）"><a href="#入门环境搭建（工欲善其事，必先利其器！）" class="headerlink" title="入门环境搭建（工欲善其事，必先利其器！）"></a>入门环境搭建（工欲善其事，必先利其器！）</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs bash">Java的特性和优势<br>Java的三大版本<br>JDK/JRE/JVM<br>安装开发环境<br>编译型和解释型<br>使用IDEA开发<br></code></pre></td></tr></table></figure>
+<hr>
+<h2 id="Zuul源码分析："><a href="#Zuul源码分析：" class="headerlink" title="Zuul源码分析："></a>Zuul源码分析：</h2><ul>
+<li><p>ZuulFilter组件核心方法</p>
+<p>filterOrder()：Filter执行顺序，通过数字指定。数字越大，优先级越低</p>
+<p>shouldFilter()：Filter是否需要执行，true代表生效，false代表不生效</p>
+<p>有时需要根据场景动态设置过滤器是否生效时就需要用到该方法</p>
+<p>run()：Filter具体实现逻辑。</p>
+<p>filterType()：Filter类型，内置主要分为PRE、ROUTING、POST和ERROR四种</p>
+</li>
+<li><p>FilterLoader源码分析</p>
+<p>在源码变化时编译、载入和校验过滤器</p>
+<p>DynamicCodeCompiler</p>
+<p>GroovyCompiler </p>
+<p>FilterFactory</p>
+<p>FilterFileManager</p>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs java"><span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> ConcurrentHashMap&lt;String, Long&gt; filterClassLastModified = <span class="hljs-keyword">new</span> ConcurrentHashMap&lt;String, Long&gt;();<br><span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> ConcurrentHashMap&lt;String, String&gt; filterClassCode = <span class="hljs-keyword">new</span> ConcurrentHashMap&lt;String, String&gt;();<br><span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> ConcurrentHashMap&lt;String, String&gt; filterCheck = <span class="hljs-keyword">new</span> ConcurrentHashMap&lt;String, String&gt;();<br><span class="hljs-keyword">private</span> <span class="hljs-keyword">final</span> ConcurrentHashMap&lt;String, List&lt;ZuulFilter&gt;&gt; hashFiltersByType = <span class="hljs-keyword">new</span> ConcurrentHashMap&lt;String, List&lt;ZuulFilter&gt;&gt;();<br><br><span class="hljs-keyword">private</span> FilterRegistry filterRegistry = FilterRegistry.instance();<br><br><span class="hljs-keyword">static</span> DynamicCodeCompiler COMPILER;<br><br><span class="hljs-keyword">static</span> FilterFactory FILTER_FACTORY = <span class="hljs-keyword">new</span> DefaultFilterFactory();<br></code></pre></td></tr></table></figure>
 
-<h4 id="基础语法学习（基础决定你未来的高度！）"><a href="#基础语法学习（基础决定你未来的高度！）" class="headerlink" title="基础语法学习（基础决定你未来的高度！）"></a>基础语法学习（基础决定你未来的高度！）</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs bash">注释/标识符/关键词<br>数据类型及类型转换<br>变量/常量/作用域<br>基本运算符<br>自增自减/常用数学工具<br>逻辑运算符/位运算符/三元运算符<br>包机制/JavaDoc生成文档<br></code></pre></td></tr></table></figure>
+<ul>
+<li><p>FilterRegistry</p>
+<p>经典的单例模式来创建FilterRegistry实例</p>
+<p>使用线程安全的ConcurrentHashMap来缓存ZuulFilter</p>
+</li>
+<li><p>RequestContext</p>
+<p>Filter之间没有直接的相互通信，他们是通过一个RequestContext的静态类来进行数据传递</p>
+<p>RequestContext类中有ThreadLocal变量来记录每个Request所需要传递的数据</p>
+</li>
+</ul>
+<hr>
+<h4 id="Zuul过滤器（ZuulFilter）架构："><a href="#Zuul过滤器（ZuulFilter）架构：" class="headerlink" title="Zuul过滤器（ZuulFilter）架构："></a>Zuul过滤器（ZuulFilter）架构：</h4><img src="C:\Users\12631\AppData\Roaming\Typora\typora-user-images\image-20211107164101107.png" srcset="/img/loading.gif" lazyload alt="image-20211107164101107" style="zoom:80%;" />
 
-<h4 id="流程控制学习（程序的本质就是这些！）"><a href="#流程控制学习（程序的本质就是这些！）" class="headerlink" title="流程控制学习（程序的本质就是这些！）"></a>流程控制学习（程序的本质就是这些！）</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs bash">用户交互Scanner/进阶使用<br><span class="hljs-keyword">if</span>选择结构/Switch选择结构/While循环/DoWhile循环<br>For循环/增强For<br><span class="hljs-built_in">break</span>/<span class="hljs-built_in">continue</span>/goto<br></code></pre></td></tr></table></figure>
+<h4 id="Zuul四种标准过滤器类型"><a href="#Zuul四种标准过滤器类型" class="headerlink" title="Zuul四种标准过滤器类型"></a>Zuul四种标准过滤器类型</h4><ul>
+<li>PRE：在请求到达目标服务器之前调用，比如身份验证、在集群中选择请求的目标服务器、记录请求日志等</li>
+<li>ROUTING：把用户请求发送给目标服务器。</li>
+<li>POST：在用户请求从目标服务器返回以后执行，比如在返回的响应上面添加响应头信息以及做各种统计等</li>
+<li>ERROR：在其他阶段发生错误时执行该过滤器</li>
+</ul>
+<hr>
 
-<h4 id="方法详解（封装的思想！）"><a href="#方法详解（封装的思想！）" class="headerlink" title="方法详解（封装的思想！）"></a>方法详解（封装的思想！）</h4><h4 id="数组详解（最简单的数据结构！）"><a href="#数组详解（最简单的数据结构！）" class="headerlink" title="数组详解（最简单的数据结构！）"></a>数组详解（最简单的数据结构！）</h4><h4 id="面向对象编程（Java的精髓OOP！）"><a href="#面向对象编程（Java的精髓OOP！）" class="headerlink" title="面向对象编程（Java的精髓OOP！）"></a>面向对象编程（Java的精髓OOP！）</h4><h4 id="异常处理详情（面对异常不慌张！）"><a href="#异常处理详情（面对异常不慌张！）" class="headerlink" title="异常处理详情（面对异常不慌张！）"></a>异常处理详情（面对异常不慌张！）</h4><h4 id="Java常用类学习（日常开发必备知识！）"><a href="#Java常用类学习（日常开发必备知识！）" class="headerlink" title="Java常用类学习（日常开发必备知识！）"></a>Java常用类学习（日常开发必备知识！）</h4><h4 id="集合框架详解（利用集合高效解决问题！）"><a href="#集合框架详解（利用集合高效解决问题！）" class="headerlink" title="集合框架详解（利用集合高效解决问题！）"></a>集合框架详解（利用集合高效解决问题！）</h4><h4 id="I-O详解（走进流的世界！）"><a href="#I-O详解（走进流的世界！）" class="headerlink" title="I/O详解（走进流的世界！）"></a>I/O详解（走进流的世界！）</h4><h4 id="多线程详解（并发编程初步！）"><a href="#多线程详解（并发编程初步！）" class="headerlink" title="多线程详解（并发编程初步！）"></a>多线程详解（并发编程初步！）</h4><h4 id="网络编程详解（迷人的网络世界！）"><a href="#网络编程详解（迷人的网络世界！）" class="headerlink" title="网络编程详解（迷人的网络世界！）"></a>网络编程详解（迷人的网络世界！）</h4><h4 id="GUI编程（从零开始开发游戏！）"><a href="#GUI编程（从零开始开发游戏！）" class="headerlink" title="GUI编程（从零开始开发游戏！）"></a>GUI编程（从零开始开发游戏！）</h4><h4 id="注解和反射（Java进阶必会技能！）"><a href="#注解和反射（Java进阶必会技能！）" class="headerlink" title="注解和反射（Java进阶必会技能！）"></a>注解和反射（Java进阶必会技能！）</h4><h4 id="JUC并发编程（高并发编程理解！）"><a href="#JUC并发编程（高并发编程理解！）" class="headerlink" title="JUC并发编程（高并发编程理解！）"></a>JUC并发编程（高并发编程理解！）</h4><h4 id="JVM深入研究（大佬成长中必会技能！）"><a href="#JVM深入研究（大佬成长中必会技能！）" class="headerlink" title="JVM深入研究（大佬成长中必会技能！）"></a>JVM深入研究（大佬成长中必会技能！）</h4>
             </div>
             <hr>
             <div>
               <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/SpringCloud/">SpringCloud</a>
+                    
+                  </div>
                 
                 
               </div>
@@ -266,9 +323,21 @@
                   <article class="post-prev col-6">
                     
                     
+                      <a href="/2021/12/06/springcloud/Resilience4j/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">Resilience4j</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
                   </article>
                   <article class="post-next col-6">
                     
+                    
+                      <a href="/2021/12/06/springcloud/spring%20cloud%20circuit%20Breaker/">
+                        <span class="hidden-mobile">Spring Cloud Circuit Beaker</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
                     
                   </article>
                 </div>

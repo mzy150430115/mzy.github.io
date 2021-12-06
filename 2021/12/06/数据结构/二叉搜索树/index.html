@@ -16,21 +16,21 @@
   <meta name="description" content="志远Zy的博客，记录日常，技术分享">
   <meta name="author" content="志远Zy">
   <meta name="keywords" content="">
-  <meta name="description" content="All technologies will eventually find answers in life 👋 🔭 I’m a graduate student 🌱 I’m currently learning java 👯 Hope to meet more interesting people 🤔 My email：&amp;#x31;&amp;#50;&amp;#x36;&amp;#x33;&amp;#49;&amp;#x31;">
-<meta property="og:type" content="website">
-<meta property="og:title" content="关于">
-<meta property="og:url" content="http://example.com/about/index.html">
+  <meta name="description" content="二叉搜索树二叉搜索锁（BST）满足的性质： 每个节点中的值必须大于（或等于）存储在其左侧子树中的任何值。 每个节点中的值必须小于（或等于）存储在其右子树中的任何值。    如何判断二叉搜索树：（1）当前节点下，其左子树只包含小于当前节点的数； （2）其右子树只包含大于当前节点的数； （3）所有左子树右子树必须也是二叉搜索树。  看到二叉搜索树就想这句话，不会的请背诵：中序遍历二叉搜索树等于遍历有序">
+<meta property="og:type" content="article">
+<meta property="og:title" content="二叉搜索树">
+<meta property="og:url" content="http://example.com/2021/12/06/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E4%BA%8C%E5%8F%89%E6%90%9C%E7%B4%A2%E6%A0%91/index.html">
 <meta property="og:site_name" content="志远Zy的小窝">
-<meta property="og:description" content="All technologies will eventually find answers in life 👋 🔭 I’m a graduate student 🌱 I’m currently learning java 👯 Hope to meet more interesting people 🤔 My email：&amp;#x31;&amp;#50;&amp;#x36;&amp;#x33;&amp;#49;&amp;#x31;">
+<meta property="og:description" content="二叉搜索树二叉搜索锁（BST）满足的性质： 每个节点中的值必须大于（或等于）存储在其左侧子树中的任何值。 每个节点中的值必须小于（或等于）存储在其右子树中的任何值。    如何判断二叉搜索树：（1）当前节点下，其左子树只包含小于当前节点的数； （2）其右子树只包含大于当前节点的数； （3）所有左子树右子树必须也是二叉搜索树。  看到二叉搜索树就想这句话，不会的请背诵：中序遍历二叉搜索树等于遍历有序">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://github-readme-stats.vercel.app/api?username=mzy150430115&?theme=dracula">
-<meta property="article:published_time" content="2021-12-01T11:20:33.000Z">
-<meta property="article:modified_time" content="2021-12-01T12:17:09.975Z">
+<meta property="og:image" content="https://img-blog.csdnimg.cn/20200313154148778.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTQxNTc2MzI=,size_16,color_FFFFFF,t_70">
+<meta property="article:published_time" content="2021-12-06T07:03:12.000Z">
+<meta property="article:modified_time" content="2021-12-06T07:32:12.834Z">
 <meta property="article:author" content="志远Zy">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://github-readme-stats.vercel.app/api?username=mzy150430115&?theme=dracula">
+<meta name="twitter:image" content="https://img-blog.csdnimg.cn/20200313154148778.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTQxNTc2MzI=,size_16,color_FFFFFF,t_70">
   
-  <title>关于 - 志远Zy的小窝</title>
+  <title>二叉搜索树 - 志远Zy的小窝</title>
 
   <link  rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4/dist/css/bootstrap.min.css" />
 
@@ -75,7 +75,7 @@
 
 
 <body>
-  <header style="height: 60vh;">
+  <header style="height: 70vh;">
     <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
@@ -176,9 +176,43 @@
       <div class="full-bg-img">
         <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
           <div class="page-header text-center fade-in-up">
-            <span class="h2" id="subtitle" title="关于">
+            <span class="h2" id="subtitle" title="二叉搜索树">
               
             </span>
+
+            
+              <div class="mt-3">
+  
+  
+    <span class="post-meta">
+      <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+      <time datetime="2021-12-06 15:03" pubdate>
+        2021年12月6日 下午
+      </time>
+    </span>
+  
+</div>
+
+<div class="mt-1">
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-chart"></i>
+      192 字
+    </span>
+  
+
+  
+    <span class="post-meta mr-2">
+      <i class="iconfont icon-clock-fill"></i>
+      
+      
+      1 分钟
+    </span>
+  
+
+  
+  
+</div>
 
             
           </div>
@@ -191,90 +225,97 @@
 
   <main>
     
-      <div class="container nopadding-x-md">
-        <div class="py-5" id="board"
-          >
-          
-            <div class="about-avatar">
-              <img src="/img/avatar.png" srcset="/img/loading.gif" lazyload
-                   class="img-fluid" alt="avatar">
-            </div>
-          
-          <div class="container">
-            <div class="row">
-              <div class="col-12 col-md-10 m-auto">
-                
+      
 
-<div class="text-center">
-  <div class="about-info">
-    <div class="about-name">Fluid</div>
-    <div class="about-intro">An elegant theme for Hexo</div>
-    <div class="about-icons">
-      
-        
-        
-        
-        <a href=https://github.com class="
-           hint--bottom hint--rounded"
-           aria-label=GitHub
-           target="_blank"
-        >
-          <i class="iconfont icon-github-fill" aria-hidden="true"></i>
-          
-        </a>
-      
-        
-        
-        
-        <a href=https://douban.com class="
-           hint--bottom hint--rounded"
-           aria-label=豆瓣
-           target="_blank"
-        >
-          <i class="iconfont icon-douban-fill" aria-hidden="true"></i>
-          
-        </a>
-      
-        
-        
-        
-        <a  class="qr-trigger
-           "
-           
-           target="_self"
-        >
-          <i class="iconfont icon-wechat-fill" aria-hidden="true"></i>
-          
-            <img class="qr-img" src="/img/favicon.png" srcset="/img/loading.gif" lazyload alt="qrcode" />
-          
-        </a>
-      
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="d-none d-lg-block col-lg-2"></div>
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div class="py-5" id="board">
+          <article class="post-content mx-auto">
+            <!-- SEO header -->
+            <h1 style="display: none">二叉搜索树</h1>
+            
+            <div class="markdown-body">
+              <h2 id="二叉搜索树"><a href="#二叉搜索树" class="headerlink" title="二叉搜索树"></a>二叉搜索树</h2><h4 id="二叉搜索锁（BST）满足的性质："><a href="#二叉搜索锁（BST）满足的性质：" class="headerlink" title="二叉搜索锁（BST）满足的性质："></a>二叉搜索锁（BST）满足的性质：</h4><ul>
+<li><strong>每个节点中的值必须大于（或等于）存储在其左侧子树中的任何值。</strong></li>
+<li><strong>每个节点中的值必须小于（或等于）存储在其右子树中的任何值。</strong></li>
+</ul>
+<img src="https://img-blog.csdnimg.cn/20200313154148778.png?x-oss-process=image/watermark,type_ZmFuZ3poZW5naGVpdGk,shadow_10,text_aHR0cHM6Ly9ibG9nLmNzZG4ubmV0L3UwMTQxNTc2MzI=,size_16,color_FFFFFF,t_70" srcset="/img/loading.gif" lazyload alt="Sample" style="zoom:50%;" />
+
+<h4 id="如何判断二叉搜索树："><a href="#如何判断二叉搜索树：" class="headerlink" title="如何判断二叉搜索树："></a>如何判断二叉搜索树：</h4><p>（1）当前节点下，其左子树<strong>只包含小于</strong>当前节点的数；</p>
+<p>（2）其右子树<strong>只包含大于</strong>当前节点的数；</p>
+<p>（3）所有左子树右子树必须也是二叉搜索树。</p>
+<hr>
+<h3 id="看到二叉搜索树就想这句话，不会的请背诵："><a href="#看到二叉搜索树就想这句话，不会的请背诵：" class="headerlink" title="看到二叉搜索树就想这句话，不会的请背诵："></a>看到二叉搜索树就想这句话，不会的请背诵：</h3><h3 id="中序遍历二叉搜索树等于遍历有序数组"><a href="#中序遍历二叉搜索树等于遍历有序数组" class="headerlink" title="中序遍历二叉搜索树等于遍历有序数组"></a>中序遍历二叉搜索树等于遍历有序数组</h3>
+            </div>
+            <hr>
+            <div>
+              <div class="post-metas mb-3">
+                
+                  <div class="post-meta mr-3">
+                    <i class="iconfont icon-category"></i>
+                    
+                      <a class="hover-with-bg" href="/categories/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84%E5%8F%8A%E7%AE%97%E6%B3%95/">数据结构及算法</a>
+                    
+                  </div>
+                
+                
+              </div>
+              
+                <p class="note note-warning">
+                  
+                    本博客所有文章除特别声明外，均采用 <a target="_blank" href="https://creativecommons.org/licenses/by-sa/4.0/deed.zh" rel="nofollow noopener noopener">CC BY-SA 4.0 协议</a> ，转载请注明出处！
+                  
+                </p>
+              
+              
+                <div class="post-prevnext">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2021/12/06/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E4%BA%8C%E5%8F%89%E5%B9%B3%E8%A1%A1%E6%A0%91/">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">二叉平衡树</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2021/12/06/%E6%95%B0%E6%8D%AE%E7%BB%93%E6%9E%84/%E4%BA%8C%E5%8F%89%E6%A0%91%E5%88%B7%E9%A2%98%E9%A1%BA%E5%BA%8F/">
+                        <span class="hidden-mobile">二叉树刷题顺序LeetCode</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+          </article>
+        </div>
+      </div>
     </div>
+    
+      <div class="d-none d-lg-block col-lg-2 toc-container" id="toc-ctn">
+        <div id="toc">
+  <p class="toc-header"><i class="iconfont icon-list"></i>&nbsp;目录</p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+      </div>
+    
   </div>
 </div>
 
-<article class="about-content page-content mt-5">
-  <div class="markdown-body">
-    <h1 id="All-technologies-will-eventually-find-answers-in-life-👋"><a href="#All-technologies-will-eventually-find-answers-in-life-👋" class="headerlink" title="All technologies will eventually find answers in life 👋"></a>All technologies will eventually find answers in life 👋</h1><ul>
-<li>🔭 I’m a graduate student</li>
-<li>🌱 I’m currently learning java</li>
-<li>👯 Hope to meet more interesting people</li>
-<li>🤔 My email：<a href="mailto:&#x31;&#50;&#x36;&#x33;&#49;&#x31;&#x32;&#x31;&#x39;&#54;&#x40;&#113;&#113;&#46;&#x63;&#111;&#109;">&#x31;&#50;&#x36;&#x33;&#49;&#x31;&#x32;&#x31;&#x39;&#54;&#x40;&#113;&#113;&#46;&#x63;&#111;&#109;</a></li>
-<li>💬 Living in Jiangsu</li>
-<li>:)</li>
-</ul>
-<p><a target="_blank" rel="noopener" href="https://github.com/anuraghazra/github-readme-stats?theme=dracula"><img src="https://github-readme-stats.vercel.app/api?username=mzy150430115&?theme=dracula" srcset="/img/loading.gif" lazyload alt="Anurag&#39;s github stats"></a></p>
+<!-- Custom -->
 
-  </div>
 
-  
-</article>
-
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
     
 
     
